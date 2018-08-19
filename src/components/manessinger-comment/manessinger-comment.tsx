@@ -7,27 +7,49 @@ import { Component, State } from '@stencil/core';
 })
 export class ManessingerComment {
 
-  @State() nameValue: string;
+  @State() userNameValue: string;
+  @State() emailValue: string;
+  @State() commentValue: string;
 
   handleSubmit(e) {
     e.preventDefault()
-    console.log(this.nameValue);
+    console.log(this.userNameValue);
+    console.log(this.emailValue);
+    console.log(this.commentValue);
     // send data to our backend
   }
 
-  handleChange(event) {
-    this.nameValue = event.target.value;
+  handleChangeUserName(event) {
+    this.userNameValue = event.target.value;
+  }
+
+  handleChangeEmail(event) {
+    this.emailValue = event.target.value;
+  }
+
+  handleChangeComment(event) {
+    this.commentValue = event.target.value;
   }
 
   render() {
     return (
-      <form onSubmit={(e) => this.handleSubmit(e)}>
-        <label>
-          Name:
-          <input type="text" value={this.nameValue} onInput={(event) => this.handleChange(event)} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+      <div class="flex-container">
+        <form onSubmit={(e) => this.handleSubmit(e)}>
+          <div class="form-container">
+            <label id="username-label" htmlFor="username">Name:</label>
+            <input id="username" type="text" value={this.userNameValue} onInput={(event) => this.handleChangeUserName(event)} />
+
+            <label id="email-label" htmlFor="email">Email (opt.):</label>
+            <input id="email" type="text" value={this.emailValue} onInput={(event) => this.handleChangeEmail(event)} />
+
+            <label id="comment-label" htmlFor="commment">Your comment:</label>
+            <textarea id="comment" value={this.commentValue} onInput={(event) => this.handleChangeComment(event)} />
+
+            <input id="cancel" type="button" value="Cancel"/>
+            <input id="submit" type="submit" value="Submit" />
+          </div>
+        </form>
+      </div>
     );
   }
 }

@@ -1,6 +1,121 @@
 :host {
 
+  .flex-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #username-label {
+    grid-area: namelabel;
+  }
+  #username {
+    grid-area: namevalue;
+  }
+  #email-label {
+    grid-area: emaillabel;
+  }
+  #email {
+    grid-area: emailvalue;
+  }
+  #comment-label {
+    grid-area: commentlabel;
+  }
+  #comment {
+    grid-area: commentvalue;
+  }
+  #cancel {
+    grid-area: cancel;
+  }
+  #submit {
+    grid-area: submit;
+  }
+
+  .form-container {
+    display: grid;
+    grid-template-columns: 140px 140px;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "namelabel    namelabel"
+      "namevalue    namevalue"
+      "emaillabel   emaillabel"
+      "emailvalue   emailvalue"
+      "commentlabel commentlabel"
+      "commentvalue commentvalue"
+      "commentvalue commentvalue"
+      "cancel       submit      ";
+    grid-column-gap: 10px;
+    grid-row-gap: 15px;
+    background-color: #ffffff;
+    padding: 10px;
+  }
+
   label {
-    background: #48d6ff;
+    justify-self: start;
+  }
+
+  input {
+    background-color: #ffffff;
+  }
+
+  textarea {
+    height: 10ex;
+  }
+
+  input, textarea {
+    border-style: groove;
+    border-width: 2px;
+  }
+
+  @media (min-width: 400px) {
+    .form-container {
+      grid-template-columns: 70px 70px 70px 70px 70px;
+      grid-template-areas:
+        "namelabel namelabel        namevalue namevalue namevalue"
+        "emaillabel emaillabel      emailvalue emailvalue emailvalue"
+        "commentlabel commentlabel  . . ."
+        "commentvalue commentvalue  commentvalue commentvalue commentvalue"
+        "cancel cancel .            submit submit";
+      padding: 12px;
+    }
+  }
+
+  @media (min-width: 600px) {
+    .form-container {
+      grid-template-columns: 85px 85px 85px 85px 85px 85px;
+      grid-template-areas:
+        "namelabel namelabel        namevalue namevalue namevalue namevalue   "
+        "emaillabel emaillabel      emailvalue emailvalue emailvalue emailvalue  "
+        "commentlabel commentlabel  . . . . "
+        "commentvalue commentvalue  commentvalue commentvalue commentvalue commentvalue"
+        "cancel cancel cancel       submit submit submit";
+      padding: 15px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .form-container {
+      grid-template-columns: 132px 132px 132px 132px;
+      grid-template-areas:
+        "namelabel      namevalue  namevalue namevalue"
+        "emaillabel     emailvalue emailvalue emailvalue"
+        "commentlabel commentlabel . . "
+        "commentvalue commentvalue commentvalue commentvalue"
+        "cancel cancel             submit submit";
+      padding: 20px;
+    }
+  }
+
+  @media (min-height: 700px) {
+    textarea {
+      height: 20ex;
+    }
+  }
+
+  @media (min-height: 1024px) {
+    textarea {
+      height: 30ex;
+    }
   }
 }
