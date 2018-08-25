@@ -1,5 +1,16 @@
 :host {
 
+  input[type="submit"],
+  input[type="button"],
+  label {
+    font-family: var(--manessinger-comment-font-family);
+    -webkit-appearance: none; // avoid having no visible border in Chrome
+  }
+
+  label {
+    font-size: var(--manessinger-comment-label-font-font-size)
+  }
+
   .flex-container {
     width: 100%;
     display: flex;
@@ -19,6 +30,12 @@
   #email {
     grid-area: emailvalue;
   }
+  #website-label {
+    grid-area: websitelabel;
+  }
+  #website {
+    grid-area: websitevalue;
+  }
   #comment-label {
     grid-area: commentlabel;
   }
@@ -37,14 +54,16 @@
     grid-template-columns: 140px 140px;
     grid-template-rows: auto;
     grid-template-areas:
-      "namelabel    namelabel"
-      "namevalue    namevalue"
-      "emaillabel   emaillabel"
-      "emailvalue   emailvalue"
-      "commentlabel commentlabel"
-      "commentvalue commentvalue"
-      "commentvalue commentvalue"
-      "cancel       submit      ";
+      "namelabel     namelabel"
+      "namevalue     namevalue"
+      "emaillabel    emaillabel"
+      "emailvalue    emailvalue"
+      "websitelabel  websitelabel"
+      "websitevalue  websitevalue"
+      "commentlabel  commentlabel"
+      "commentvalue  commentvalue"
+      "commentvalue  commentvalue"
+      "cancel        submit      ";
     grid-column-gap: 10px;
     grid-row-gap: 15px;
     background-color: #ffffff;
@@ -64,8 +83,12 @@
   }
 
   input, textarea {
-    border-style: groove;
-    border-width: 2px;
+    border: 2px inset #bbbbbb;
+  }
+
+  #cancel,
+  #submit {
+    padding: 0.5ex 7px 0.6ex;
   }
 
   @media (min-width: 400px) {
@@ -74,6 +97,7 @@
       grid-template-areas:
         "namelabel namelabel        namevalue namevalue namevalue"
         "emaillabel emaillabel      emailvalue emailvalue emailvalue"
+        "websitelabel websitelabel  websitevalue websitevalue websitevalue"
         "commentlabel commentlabel  . . ."
         "commentvalue commentvalue  commentvalue commentvalue commentvalue"
         "cancel cancel .            submit submit";
@@ -85,8 +109,9 @@
     .form-container {
       grid-template-columns: 85px 85px 85px 85px 85px 85px;
       grid-template-areas:
-        "namelabel namelabel        namevalue namevalue namevalue namevalue   "
-        "emaillabel emaillabel      emailvalue emailvalue emailvalue emailvalue  "
+        "namelabel namelabel        namevalue namevalue namevalue namevalue"
+        "emaillabel emaillabel      emailvalue emailvalue emailvalue emailvalue"
+        "websitelabel websitelabel  websitevalue websitevalue websitevalue websitevalue"
         "commentlabel commentlabel  . . . . "
         "commentvalue commentvalue  commentvalue commentvalue commentvalue commentvalue"
         "cancel cancel cancel       submit submit submit";
@@ -98,11 +123,12 @@
     .form-container {
       grid-template-columns: 132px 132px 132px 132px;
       grid-template-areas:
-        "namelabel      namevalue  namevalue namevalue"
-        "emaillabel     emailvalue emailvalue emailvalue"
-        "commentlabel commentlabel . . "
-        "commentvalue commentvalue commentvalue commentvalue"
-        "cancel cancel             submit submit";
+        "namelabel     namevalue     namevalue    namevalue"
+        "emaillabel    emailvalue    emailvalue   emailvalue"
+        "websitelabel  websitevalue  websitevalue websitevalue"
+        "commentlabel  commentlabel  .            ."
+        "commentvalue  commentvalue  commentvalue commentvalue"
+        "cancel        cancel        submit       submit";
       padding: 20px;
     }
   }
