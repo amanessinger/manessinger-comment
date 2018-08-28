@@ -24,29 +24,42 @@ export class ManessingerComment {
       "comment": this.commentValue
     };
     // send data to our backend
-    this.postData(data)
-      .then(data => console.log(JSON.stringify(data))) // JSON-string from `response.json()` call
-      .catch(error => console.error(error));
+    fetch('https://7e6ex1bf2c.execute-api.us-east-2.amazonaws.com/default/manessingercomment_receiver',
+      {
+        method: 'post',
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
+        body: JSON.stringify(data),
+      })
+      .then(this.status)
+      .then(this.jsonify)
+      .then((data) => {
+        console.log('Request succeeded with JSON response', data);
+        this.closeWindow();
+      }).catch((error) => {
+        console.log('Request failed', error);
+        this.closeWindow();
+    });
   }
 
-  postData(data, url = `https://7e6ex1bf2c.execute-api.us-east-2.amazonaws.com/default/manessingercomment_receiver`) {
-    // Default options are marked with *
-    return fetch(url, {
-      method: "POST",
-      mode: "no-cors", // no-cors, cors, *same-origin
-      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-      //credentials: "same-origin", // include, same-origin, *omit
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-      },
-      redirect: "follow", // manual, *follow, error
-      referrer: "no-referrer", // no-referrer, *client
-      body: JSON.stringify(data), // body data type must match "Content-Type" header
-    })
-      .then(response => response.json()); // parses response to JSON
+  status(response) {
+    if (response.status >= 200 && response.status < 300) {
+      return Promise.resolve(response)
+    } else {
+      return Promise.reject(new Error(response.statusText))
+    }
+  }
+
+  jsonify(response) {
+    return response.json()
   }
 
   handleCancel() {
+    this.closeWindow();
+  }
+
+  closeWindow() {
     this.window.open(this.window.location.toString(), '_self').close();
   }
 
