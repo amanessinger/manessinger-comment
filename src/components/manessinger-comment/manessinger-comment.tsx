@@ -24,7 +24,7 @@ export class ManessingerComment {
       "comment": this.commentValue
     };
     // send data to our backend
-    fetch('https://7e6ex1bf2c.execute-api.us-east-2.amazonaws.com/default/manessingercomment_receiver',
+    fetch('https://b70j7je6yl.execute-api.us-east-2.amazonaws.com/default/manessingercomment_receiver',
       {
         method: 'post',
         headers: {
