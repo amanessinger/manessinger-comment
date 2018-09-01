@@ -18,10 +18,10 @@ export class ManessingerComment {
     e.preventDefault();
     let data = {
       "attach_to": this.window.location.hash.substr(1),
-      "name": this.userNameValue,
-      "email": this.emailValue,
-      "website": this.websiteValue,
-      "comment": this.commentValue
+      "author": this.userNameValue,
+      "author_email": this.emailValue,
+      "author_url": this.websiteValue,
+      "content": this.commentValue
     };
     // send data to our backend
     fetch('https://b70j7je6yl.execute-api.us-east-2.amazonaws.com/default/manessingercomment_receiver',
@@ -36,9 +36,13 @@ export class ManessingerComment {
       .then(this.jsonify)
       .then((data) => {
         console.log('Request succeeded with JSON response', data);
+        if (data.status) {
+          this.window.alert('comment submitted with status ' + data.status);
+        }
         this.closeWindow();
       }).catch((error) => {
         console.log('Request failed', error);
+        this.window.alert('submission failed: ' + error);
         this.closeWindow();
     });
   }
